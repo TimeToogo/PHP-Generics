@@ -23,6 +23,10 @@ class Parser {
     
     
     public function Parse($GenericCode, $GenericType, $GenericTypesString) {
+        if(strpos('\\', $GenericType) === 0) {
+            $GenericType = substr($GenericType, 1);
+        }
+        
         $AST = $this->PHPParser->parse($GenericCode);
         
         $ClassOrInterface = $this->GetMatchedClassOrInterface($AST, $GenericType);
@@ -44,16 +48,17 @@ class Parser {
         return $ConcreteCode;
     }
     
-    private function GetMatchedClassOrInterface(array $AST, $GenericType) {
+    private function GetMatchedClassOrInterface(array $AST, $GenericType, $Namespace = null) {
         foreach($AST as $Node) {
             if($Node instanceof \PHPParser_Node_Stmt_Namespace) {
-                return $this->GetMatchedClassOrInterface($Node->stmts, $GenericType);
+                $Namespace = $Node->name !== null ? (string)$Node->name : null;
+                return $this->GetMatchedClassOrInterface($Node->stmts, $GenericType, $Namespace);
             }
             else if($Node instanceof \PHPParser_Node_Stmt_Class ||
                     $Node instanceof \PHPParser_Node_Stmt_Interface ||
                     $Node instanceof \PHPParser_Node_Stmt_Trait) {
-                if($Node->name === $GenericType || 
-                        $Node->name === substr($GenericType, strrpos($GenericType, '\\') + 1)) {
+                $FullName = $Namespace !== null ? $Namespace . '\\' . $Node->name : $Node->name;
+                if($FullName === $GenericType) {
                     return $Node;
                 }
             }
