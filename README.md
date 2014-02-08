@@ -17,8 +17,8 @@ configurated directory.
 Getting Started
 ===============
 To get started with PHP-Generics must first set the following configuration:
- - `DevelopmentMode` - If development mode is set to true, the cached concrete types will be overwritten.
- - `RootPath` - The root of your project, the namespaces must correspond with the directory path.
+ - `DevelopmentMode` - If development mode is set to true, the cached concrete types will be ignored and overwritten.
+ - `RootPath` - The root of your project, the namespaces and class names must correspond with the directory and file paths.
  - `CachePath` - The path to use for storing the concrete implementations of the generic types.
 
 ```php
@@ -33,7 +33,7 @@ $Configuration->SetCachePath(__DIR__ . '/Cache');
 
 A Generic Example
 =================
-The below code demonstrate the most simple of generic types:
+The below code demonstrate a simple generic type:
 
 ```php
 class Maybe {
@@ -67,28 +67,38 @@ You can use type type parameters in any context: `$Var instanceof __TYPE__`, `fu
 Using the generic types
 =======================
 
+The type parameters of the class are defined as sub-namespaces and are *seperated by a special namespace `_`*:
+
+Creating a concete implementation of the above generic can be done like so:
 ```php
-$MaybeStdClass = Maybe\stdClass(new stdClass());
+$Maybe = Maybe\stdClass();
+$Maybe->HasValue(); //false
+$Maybe->SetValue(new stdClass());
+$Maybe->HasValue(); //true
+$Maybe->SetValue(new DateTime()); //ERROR
+
 ```
 
-The type parameters of the class are defined as sub-namespaces and are seperated by a special namespace `_`:
-```php
+Below creates a Tuple with `__TYPE1__` as 'stdClass' and `__TYPE2__` as 'DateTime':
+```php 
 $Tuple = new TupleOf\stdClass\_\DateTime();
 ```
-This creates a Tuple with `__TYPE1__` as 'stdClass' and `__TYPE2__` as 'DateTime';
 
-**Limitation: All type parameter must be fully qualified**
+
+
+**Limitation: All type parameter must be fully qualified:**
+
 If you have a namespaced class `Foo\Bar\SomeClass` this must be specified in the generic type parameter:
 ```php
 $Tuple = new TupleOf\Foo\Bar\SomeClass\_\DateTime();
 ```
-This creates a Tuple with `__TYPE1__` as 'Foo\Bar\SomeClass' and `__TYPE2__` as 'DateTime';
+This creates a Tuple with `__TYPE1__` as `Foo\Bar\SomeClass` and `__TYPE2__` as `DateTime`.
 
 Other uses
 ==========
 Generics can be used with inheritence:
 ```php
-class TupleOfBarAndBaz extends Tuple\Bar\_\Baz {
+class TupleOfBarAndBaz extends TupleOf\Bar\_\Baz {
     //...
 }
 ```
@@ -101,13 +111,13 @@ interface IHaveOne {
 }
 
 class User implements IHaveOne\Account {
-    prtivate $One;
+    private $One;
     
     public function GetOne(){
         return $this->One;
     }
     public function SetOne(Account $One) {
-        $this->One = $Account;
+        $this->One = $One;
     }
 }
 ```
