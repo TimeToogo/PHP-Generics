@@ -2,7 +2,6 @@
 
 namespace Generics\Tests;
 
-
 abstract class GenericsTestCase extends \PHPUnit_Framework_TestCase {
     public function __construct() {
         parent::__construct();

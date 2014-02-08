@@ -44,6 +44,23 @@ class Parser {
         return $ConcreteCode;
     }
     
+    private function GetMatchedClassOrInterface(array $AST, $GenericType) {
+        foreach($AST as $Node) {
+            if($Node instanceof \PHPParser_Node_Stmt_Namespace) {
+                return $this->GetMatchedClassOrInterface($Node->stmts, $GenericType);
+            }
+            else if($Node instanceof \PHPParser_Node_Stmt_Class ||
+                    $Node instanceof \PHPParser_Node_Stmt_Interface ||
+                    $Node instanceof \PHPParser_Node_Stmt_Trait) {
+                if($Node->name === $GenericType || 
+                        $Node->name === substr($GenericType, strrpos($GenericType, '\\') + 1)) {
+                    return $Node;
+                }
+            }
+        }
+        return null;
+    }
+    
     private function ParseGenericTypes($GenericTypesString) {
         if(strpos($GenericTypesString, '\\') === 0) {
             $GenericTypesString = substr($GenericTypesString, 1);
@@ -63,22 +80,6 @@ class Parser {
         $Types[] = implode('\\', $TypeParts);
         
         return $Types;
-    }
-    
-    private function GetMatchedClassOrInterface(array $AST, $GenericType) {
-        foreach($AST as $Node) {
-            if($Node instanceof \PHPParser_Node_Stmt_Namespace) {
-                return $this->GetMatchedClassOrInterface($Node->stmts, $GenericType);
-            }
-            else if($Node instanceof \PHPParser_Node_Stmt_Class ||
-                    $Node instanceof \PHPParser_Node_Stmt_Interface) {
-                if($Node->name === $GenericType || 
-                        $Node->name === substr($GenericType, strrpos($GenericType, '\\') + 1)) {
-                    return $Node;
-                }
-            }
-        }
-        return null;
     }
     
     private function CreateGenericTypeMap(array $GenericTypes) {

@@ -20,6 +20,13 @@ class ArrayOfTest extends GenericsTestCase {
         $ArrayOfstdClass[] = new \stdClass();
     }
     
+    public function testNestedGeneric() {
+        $ArrayOfArrayOfstdClass = new ArrayOf\Generics\Tests\Classes\ArrayOf\stdClass();
+        $ArrayOfstdClass = new ArrayOf\stdClass();
+        $ArrayOfstdClass[] = new \stdClass();
+        $ArrayOfArrayOfstdClass[] = $ArrayOfstdClass;
+    }
+    
     /**
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Expecting type stdClass: DateTime given

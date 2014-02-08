@@ -3,20 +3,20 @@
 namespace Generics\Tests\Cases;
 
 use \Generics\Tests\GenericsTestCase;
-use \Generics\Tests\Classes\Tuple;
+use \Generics\Tests\Classes\TupleOf;
 
-class TupleTest extends GenericsTestCase {
+class TupleOfTest extends GenericsTestCase {
 
     public function testValidTupleInstantiation() {
-        new Tuple\stdClass();
-        new Tuple\stdClass\_\stdClass();
-        new Tuple\stdClass\_\stdClass\_\stdClass();
-        new Tuple\stdClass\_\stdClass\_\stdClass\_\stdClass();
-        new Tuple\stdClass\_\stdClass\_\stdClass\_\stdClass\_\stdClass();
+        new TupleOf\stdClass();
+        new TupleOf\stdClass\_\stdClass();
+        new TupleOf\stdClass\_\stdClass\_\stdClass();
+        new TupleOf\stdClass\_\stdClass\_\stdClass\_\stdClass();
+        new TupleOf\stdClass\_\stdClass\_\stdClass\_\stdClass\_\stdClass();
     }
 
     public function testTupleSetsData() {
-        $ThreeTuple = new Tuple\stdClass\_\stdClass\_\stdClass();
+        $ThreeTuple = new TupleOf\stdClass\_\stdClass\_\stdClass();
         $ThreeTuple->SetItem1(new \stdClass());
         $ThreeTuple->SetItem2(new \stdClass());
         $ThreeTuple->SetItem3(new \stdClass());
@@ -26,7 +26,7 @@ class TupleTest extends GenericsTestCase {
      * @expectedException \PHPUnit_Framework_Error
      */
     public function testUntypedParameterIsRejected() {
-        $ThreeTuple = new Tuple\stdClass\_\stdClass\_\stdClass();
+        $ThreeTuple = new TupleOf\stdClass\_\stdClass\_\stdClass();
         $ThreeTuple->SetItem4(new \stdClass());
     }
     

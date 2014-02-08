@@ -52,8 +52,8 @@ final class Configuration {
     }
 
     public function SetCachePath($CachePath) {
-        if(!is_string($CachePath) || !is_dir($CachePath)) {
-            throw new \InvalidArgumentException('$CachePath must be a valid directory');
+        if(!is_string($CachePath)) {
+            throw new \InvalidArgumentException('$CachePath must be a valid string');
         }
         $this->CachePath = $CachePath;
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Generics\Tests\Classes\Tuple\stdClass\_\stdClass\_;
+namespace Generics\Tests\Classes\TupleOf\stdClass\_\stdClass\_\stdClass\_;
 
 class stdClass
 {
@@ -56,7 +56,7 @@ class stdClass
     {
         $this->Item3 = $Item3;
     }
-    public function SetItem4(__TYPE4__ $Item4)
+    public function SetItem4(\stdClass $Item4)
     {
         $this->Item4 = $Item4;
     }
