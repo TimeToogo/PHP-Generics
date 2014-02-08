@@ -79,7 +79,7 @@ $Maybe->SetValue(new DateTime()); //ERROR
 
 ```
 
-Below creates a Tuple with `__TYPE1__` as 'stdClass' and `__TYPE2__` as 'DateTime':
+Below creates a Tuple with `__TYPE1__` as `stdClass` and `__TYPE2__` as `DateTime`:
 ```php 
 $Tuple = new TupleOf\stdClass\_\DateTime();
 ```
