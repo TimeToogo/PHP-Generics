@@ -1,0 +1,24 @@
+{
+    "name": "timetoogo/php-generics",
+    "description": "Generic types for PHP",
+    "keywords": ["php", "generics", "types"],
+    "homepage": "http://www.github.com/TimeToogo/PHP-Generics",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Elliot Levin",
+            "email": "elliot@aanet.com.au"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0",
+        "nikic/php-parser": "0.9.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-0": { "Generics": "src/" }
+    }
+}
