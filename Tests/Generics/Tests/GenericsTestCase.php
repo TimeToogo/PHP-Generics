@@ -10,7 +10,10 @@ abstract class GenericsTestCase extends \PHPUnit_Framework_TestCase {
     }
     
     protected function InitializeGenerics() {
-        $Configuration = new \Generics\Configuration(true, dirname(dirname(__DIR__)), __DIR__ . '/Cache');
+        $Configuration = new \Generics\Configuration();
+        $Configuration->SetIsDevelopmentMode(true);
+        $Configuration->SetRootPath(dirname(dirname(__DIR__)));
+        $Configuration->SetCachePath(__DIR__ . '/Cache');
         \Generics\Loader::Register($Configuration);
     }
 }
