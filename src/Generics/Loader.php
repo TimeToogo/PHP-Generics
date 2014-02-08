@@ -14,6 +14,15 @@ final class Loader {
     }
     
     public static function Register(Configuration $Configuration) {
+        if(!$Configuration->HasDevelopmentMode()) {
+            throw new \BadMethodCallException('Configuration is missing the development mode');
+        }
+        if(!$Configuration->HasRootPath()) {
+            throw new \BadMethodCallException('Configuration is missing the root path');
+        }
+        if(!$Configuration->HasCachePath()) {
+            throw new \BadMethodCallException('Configuration is missing the cache path');
+        }
         $Loader = new self($Configuration);
         spl_autoload_register([$Loader, 'Load']);
         return $Loader;

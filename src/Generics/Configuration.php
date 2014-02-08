@@ -7,12 +7,12 @@ final class Configuration {
     private $RootPath;
     private $CachePath;
     
-    public function __construct($IsDevelopmentMode, $RootPath, $CachePath) {
+    public function __construct($IsDevelopmentMode = null, $RootPath = null, $CachePath = null) {
         $this->IsDevelopmentMode = $IsDevelopmentMode;
         $this->RootPath = $RootPath;
         $this->CachePath = $CachePath;
     }
-    
+        
     public function IsDevelopmentMode() {
         return $this->IsDevelopmentMode;
     }
@@ -23,5 +23,38 @@ final class Configuration {
     
     public function GetCachePath() {
         return $this->CachePath;
+    }
+    
+    public function HasDevelopmentMode() {
+        return $this->IsDevelopmentMode !== null;
+    }
+
+    public function HasRootPath() {
+        return $this->RootPath !== null;
+    }
+    
+    public function HasCachePath() {
+        return $this->CachePath !== null;
+    }
+    
+    public function SetIsDevelopmentMode($IsDevelopmentMode) {
+        if(!is_bool($IsDevelopmentMode)) {
+            throw new \InvalidArgumentException('$IsDevelopmentMode must be boolean');
+        }
+        $this->IsDevelopmentMode = $IsDevelopmentMode;
+    }
+
+    public function SetRootPath($RootPath) {
+        if(!is_string($RootPath) || !is_dir($RootPath)) {
+            throw new \InvalidArgumentException('$RootPath must be a valid directory');
+        }
+        $this->RootPath = $RootPath;
+    }
+
+    public function SetCachePath($CachePath) {
+        if(!is_string($CachePath) || !is_dir($CachePath)) {
+            throw new \InvalidArgumentException('$CachePath must be a valid directory');
+        }
+        $this->CachePath = $CachePath;
     }
 }
