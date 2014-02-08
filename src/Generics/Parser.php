@@ -31,7 +31,8 @@ class Parser {
         
         $ClassOrInterface = $this->GetMatchedClassOrInterface($AST, $GenericType);
         if($ClassOrInterface === null) {
-            throw new \Exception();
+            throw new \ErrorException(
+                    sprintf('Failure to parse generic type %s from file', $GenericType));
         }
         
         $GenericTypes = $this->ParseGenericTypes($GenericTypesString);
