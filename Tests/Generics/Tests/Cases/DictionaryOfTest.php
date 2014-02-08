@@ -3,18 +3,18 @@
 namespace Generics\Tests\Cases;
 
 use \Generics\Tests\GenericsTestCase;
-use \Generics\Tests\Classes\Dictionary;
+use \Generics\Tests\Classes\DictionaryOf;
 
-class DictionaryTest extends GenericsTestCase {
+class DictionaryOfTest extends GenericsTestCase {
     
     public function testGenericInstantiation() {
-        new Dictionary\stdClass\_\stdClass();
-        new Dictionary\stdClass\_\DateTime();
-        new Dictionary\Hello\_\World();
+        new DictionaryOf\stdClass\_\stdClass();
+        new DictionaryOf\stdClass\_\DateTime();
+        new DictionaryOf\Hello\_\World();
     }
     
     public function testValidKeysAndValuesAreAdded() {
-        $Dictionary = new Dictionary\stdClass\_\stdClass();
+        $Dictionary = new DictionaryOf\stdClass\_\stdClass();
         $Dictionary[new \stdClass()] = new \stdClass();
         $Dictionary[new \stdClass()] = new \stdClass();
     }
@@ -24,7 +24,7 @@ class DictionaryTest extends GenericsTestCase {
      * @expectedExceptionMessage Key for dictionary must be of type stdClass: DateTime given
      */
     public function testInvalidKeysAreRejected() {
-        $Dictionary = new Dictionary\stdClass\_\stdClass();
+        $Dictionary = new DictionaryOf\stdClass\_\stdClass();
         $Dictionary[new \DateTime()] = new \stdClass();
     }
     
@@ -33,7 +33,7 @@ class DictionaryTest extends GenericsTestCase {
      * @expectedExceptionMessage Value for dictionary must be of type stdClass: DateTime given
      */
     public function testInvalidValuesAreRejected() {
-        $Dictionary = new Dictionary\stdClass\_\stdClass();
+        $Dictionary = new DictionaryOf\stdClass\_\stdClass();
         $Dictionary[new \stdClass()] = new \DateTime();
     }
 }

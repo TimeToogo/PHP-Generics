@@ -2,7 +2,7 @@
 
 namespace Generics\Tests\Classes;
 
-class Dictionary implements \ArrayAccess, \Iterator, \Countable {
+class DictionaryOf implements \ArrayAccess, \Iterator, \Countable {
     private $Keys = array();
     private $Values = array();
     private $Position = 0;

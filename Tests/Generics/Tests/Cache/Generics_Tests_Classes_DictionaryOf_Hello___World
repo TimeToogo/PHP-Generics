@@ -1,8 +1,8 @@
 <?php
 
-namespace Generics\Tests\Classes\Dictionary\stdClass\_;
+namespace Generics\Tests\Classes\DictionaryOf\Hello\_;
 
-class stdClass implements \ArrayAccess, \Iterator, \Countable
+class World implements \ArrayAccess, \Iterator, \Countable
 {
     private $Keys = array();
     private $Values = array();
@@ -33,14 +33,14 @@ class stdClass implements \ArrayAccess, \Iterator, \Countable
     }
     private function VerifyKey($Key)
     {
-        if (!$Key instanceof \stdClass) {
-            throw new \InvalidArgumentException(sprintf('Key for dictionary must be of type %s: %s given', 'stdClass', get_class($Key)));
+        if (!$Key instanceof \Hello) {
+            throw new \InvalidArgumentException(sprintf('Key for dictionary must be of type %s: %s given', 'Hello', get_class($Key)));
         }
     }
     private function VerifyValue($Value)
     {
-        if (!$Value instanceof \stdClass) {
-            throw new \InvalidArgumentException(sprintf('Value for dictionary must be of type %s: %s given', 'stdClass', get_class($Value)));
+        if (!$Value instanceof \World) {
+            throw new \InvalidArgumentException(sprintf('Value for dictionary must be of type %s: %s given', 'World', get_class($Value)));
         }
     }
     public function offsetExists($Key)

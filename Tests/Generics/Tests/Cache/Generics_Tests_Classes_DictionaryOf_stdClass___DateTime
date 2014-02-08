@@ -1,6 +1,6 @@
 <?php
 
-namespace Generics\Tests\Classes\Dictionary\stdClass\_;
+namespace Generics\Tests\Classes\DictionaryOf\stdClass\_;
 
 class DateTime implements \ArrayAccess, \Iterator, \Countable
 {
