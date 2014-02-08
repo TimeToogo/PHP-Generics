@@ -10,7 +10,7 @@ Generics allows you to write type safe code against multiple types.
 
 Installation
 ============
-To install with composer add this to your `composer.json:
+To install with composer add this to your `composer.json`:
 ```javascript
 {
     "require": {
