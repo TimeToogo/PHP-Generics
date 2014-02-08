@@ -6,15 +6,12 @@ class Parser {
     const TypeSeperator = '_';
     
     private $PHPParser;
-    private $FullyQualifyTraverser;
     private $GenericTypeReplacerTraverser;
     private $GenericTypeReplacerVisitor;
     private $PrettyPrinter;
     
     public function __construct() {
         $this->PHPParser = new \PHPParser_Parser(new \PHPParser_Lexer());
-        $this->FullyQualifyTraverser = new \PHPParser_NodeTraverser();
-        $this->FullyQualifyTraverser->addVisitor(new \PHPParser_NodeVisitor_NameResolver());
         $this->PrettyPrinter = new \PHPParser_PrettyPrinter_Default();
         $this->GenericTypeReplacerTraverser = new \PHPParser_NodeTraverser();
         $this->GenericTypeReplacerVisitor = new Visitors\GenericTypeReplacer();
@@ -116,10 +113,6 @@ class Parser {
         return new \PHPParser_Node_Stmt_Namespace(
                 new \PHPParser_Node_Name($Namspace),
                 $StatementNodes);
-    }
-    
-    private function FullyQualify(array $AST) {
-        return $this->FullyQualifyTraverser->traverse($AST);
     }
     
     private function ReplaceGenericTypes(\PHPParser_Node $ClassOrInterface, array $GenericTypeMap) {

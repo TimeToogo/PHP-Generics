@@ -14,7 +14,7 @@ To install with composer add this to your `composer.json`:
 ```javascript
 {
     "require": {
-      "timetoogo/php-generics": "0.1.1"
+      "timetoogo/php-generics": "0.1.2"
     }
 }
 ```
