@@ -8,6 +8,17 @@ What are generics?
 ==================
 Generics allows you to write type safe code against multiple types.
 
+Installation
+============
+To install with composer add this to your `composer.json:
+```javascript
+{
+    "require": {
+      "timetoogo/php-generics": "*"
+    }
+}
+```
+
 The implementation
 ==================
 This library has taken advantage of PHP's namspacing and autoloading to emulate generic types. 
