@@ -27,6 +27,22 @@ class ArrayOfTest extends GenericsTestCase {
         $ArrayOfArrayOfstdClass[] = $ArrayOfstdClass;
     }
     
+    public function testInheritedGenericValuesAreAdded() {
+        $Array = new Implementations\ArrayOfDates();
+        $Array[] = new \DateTime();
+        $Array[] = new \DateTime();
+    }
+    
+    
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Expecting type DateTime: stdClass given
+     */
+    public function testInheritedGenericValuesAreRejected() {
+        $Array = new Implementations\ArrayOfDates();
+        $Array[] = new \stdClass();
+    }
+    
     /**
      * @expectedException InvalidArgumentException
      * @expectedExceptionMessage Expecting type stdClass: DateTime given
