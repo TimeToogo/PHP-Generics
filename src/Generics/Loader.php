@@ -78,7 +78,7 @@ final class Loader {
     
     private function MakeConcreteFileName($ClassName) {
         $StorageClassName = str_replace('\\', '_', $ClassName);
-        return $this->Configuration->GetCachePath() . '/' . $StorageClassName;
+        return $this->Configuration->GetCachePath() . '/' . $StorageClassName . '.php';
     }
     
     private function SaveConcreteFile($ConcreteCode, $FileName) {

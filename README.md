@@ -14,7 +14,7 @@ To install with composer add this to your `composer.json`:
 ```javascript
 {
     "require": {
-      "timetoogo/php-generics": "*"
+      "timetoogo/php-generics": "0.1.1"
     }
 }
 ```
@@ -35,7 +35,7 @@ To get started with PHP-Generics must first set the following configuration:
 ```php
 $Configuration = new \Generics\Configuration();
 $Configuration->SetIsDevelopmentMode(true);
-$Configuration->SetRootPath(dirname(dirname(__DIR__)));
+$Configuration->SetRootPath(__DIR__);
 $Configuration->SetCachePath(__DIR__ . '/Cache');
 //Register the generic auto loader
 \Generics\Loader::Register($Configuration);
