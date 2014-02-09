@@ -82,7 +82,7 @@ The type parameters of the class are defined as sub-namespaces and are *seperate
 
 Creating a concete implementation of the above generic can be done like so:
 ```php
-$Maybe = Maybe\stdClass();
+$Maybe = new Maybe\stdClass();
 $Maybe->HasValue(); //false
 $Maybe->SetValue(new stdClass());
 $Maybe->HasValue(); //true
