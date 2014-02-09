@@ -3,7 +3,6 @@
 namespace Generics\Visitors;
 
 class GenericTypeReplacer extends \PHPParser_NodeVisitorAbstract {
-    private $ShouldBeName = false;
     private $GenericTypeMap;
     public function __construct(array $GenericTypeMap = array()) {
         $this->GenericTypeMap = $GenericTypeMap;
