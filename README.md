@@ -132,3 +132,11 @@ class User implements IHaveOne\Account {
     }
 }
 ```
+
+You can even extend/implement/use generic type paramerters:
+```php
+class Example extends __TYPE1__ implements __TYPE2__, __TYPE3__ {
+    use __TYPE4__, __TYPE5__;
+}
+```
+
