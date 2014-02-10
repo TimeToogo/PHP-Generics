@@ -20,11 +20,20 @@ class ArrayOfTest extends GenericsTestCase {
         $ArrayOfstdClass[] = new \stdClass();
     }
     
-    public function testNestedGeneric() {
+    public function testNestedGenericValuesAreAccepted() {
         $ArrayOfArrayOfstdClass = new ArrayOf\Generics\Tests\Classes\ArrayOf\stdClass();
         $ArrayOfstdClass = new ArrayOf\stdClass();
         $ArrayOfstdClass[] = new \stdClass();
         $ArrayOfArrayOfstdClass[] = $ArrayOfstdClass;
+    }
+    
+    /**
+     * @expectedException InvalidArgumentException
+     * @expectedExceptionMessage Expecting type Generics\Tests\Classes\ArrayOf\stdClass: stdClass given
+     */
+    public function testNestedGenericValuesAreRejected() {
+        $ArrayOfArrayOfstdClass = new ArrayOf\Generics\Tests\Classes\ArrayOf\stdClass();
+        $ArrayOfArrayOfstdClass[] = new \stdClass();
     }
     
     public function testInheritedGenericValuesAreAdded() {

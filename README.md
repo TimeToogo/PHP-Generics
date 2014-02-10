@@ -14,7 +14,7 @@ To install with composer add this to your `composer.json`:
 ```javascript
 {
     "require": {
-      "timetoogo/php-generics": "0.2.1"
+      "timetoogo/php-generics": "0.2.2"
     }
 }
 ```
@@ -131,6 +131,11 @@ class User implements IHaveOne\Account {
         $this->One = $One;
     }
 }
+```
+
+Generic can be nested:
+```php
+$ArrayOfArrayOfStandardClasses = new ArrayOf\ArrayOf\stdClass();
 ```
 
 You can even extend/implement/use generic type paramerters:
