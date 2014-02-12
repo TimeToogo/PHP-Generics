@@ -73,16 +73,25 @@ class Parser {
         $TypeParts = array();
         foreach($NamespaceSegments as $NamespaceSegment) {
             if($NamespaceSegment === self::TypeSeperator) {
-                $Types[] = implode('\\', $TypeParts);
+                $Types[] = $this->CreateTypeFromParts($TypeParts);
                 $TypeParts = array();
             }
             else {
                 $TypeParts[] = $NamespaceSegment;
             }
         }
-        $Types[] = implode('\\', $TypeParts);
+        $Types[] = $this->CreateTypeFromParts($TypeParts);
         
         return $Types;
+    }
+    
+    private function CreateTypeFromParts(array $TypeParts) {
+        $Type = implode('\\', $TypeParts);
+        if(strlen($Type) === 0) {
+            throw new \ErrorException('Failure to load generic type: Empty type parameter');
+        }
+        
+        return $Type;
     }
     
     private function CreateGenericTypeMap(array $GenericTypes) {

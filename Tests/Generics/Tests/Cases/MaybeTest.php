@@ -30,6 +30,14 @@ class MaybeTest extends GenericsTestCase {
         $this->assertSame(null, $Maybe->GetValue());
     }
     
+    /**
+     * @expectedException ErrorException
+     * @expectedExceptionMessage Failure to load generic type: Empty type parameter
+     */
+    public function testEmptyGenericTypeFailsInstantiation() {
+        $Maybe = new Maybe\_();
+    }
+    
 }
 
 ?>
